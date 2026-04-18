@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tan Tian Hee | Master Personal Trainer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0c0e;
+      --surface: #141416;
+      --surface2: #1c1c1f;
+      --border: rgba(255,255,255,0.07);
+      --orange: #FF5A1F;
+      --orange-glow: rgba(255,90,31,0.15);
+      --white: #ffffff;
+      --grey: #9a9a9a;
+      --light: #f0f0f0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 5%;
+      background: rgba(12,12,14,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 3px;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--orange); }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--grey);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--orange);
+      color: var(--white) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none; position: fixed;
+      top: 61px; left: 0; right: 0; z-index: 199;
+      background: rgba(12,12,14,0.98);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 5%;
+      flex-direction: column; gap: 1.2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--grey); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .mobile-menu a:hover { color: var(--white); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 5% 4rem;
+      position: relative;
+      overflow: hidden;
+      gap: 4rem;
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,90,31,0.12) 0%, transparent 70%);
+      top: 50%; left: 40%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-left { position: relative; z-index: 1; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--orange-glow);
+      border: 1px solid rgba(255,90,31,0.3);
+      color: var(--orange);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tag::before { content: '●'; font-size: 0.5rem; }
+
+    h1.hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 9vw, 8rem);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+      color: var(--white);
+    }
+
+    h1.hero-name .line2 { color: var(--orange); }
+
+    .hero-sub {
+      font-size: 0.85rem;
+      color: var(--grey);
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero-quote {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: var(--light);
+      font-weight: 300;
+      font-style: italic;
+      border-left: 3px solid var(--orange);
+      padding-left: 1.2rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--orange);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-lbl {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.25s;
+      cursor: pointer; border: none;
+    }
+
+    .btn-primary { background: var(--orange); color: var(--white); }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,90,31,0.35); }
+
+    .btn-ghost { background: transparent; color: var(--white); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+
+    /* HERO RIGHT — photo */
+    .hero-right {
+      position: relative; z-index: 1;
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    .photo-frame {
+      width: 380px; height: 480px;
+      border-radius: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-frame::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--orange-glow), transparent);
+    }
+
+    .photo-frame img {
+      width: 100%; height: 100%; object-fit: cover; border-radius: 20px;
+    }
+
+    .photo-initials {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem;
+      color: var(--orange);
+      letter-spacing: 4px;
+      position: relative;
+    }
+
+    .photo-placeholder-text {
+      font-size: 0.7rem;
+      color: var(--grey);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .photo-badge {
+      position: absolute;
+      bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+      background: rgba(12,12,14,0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+
+    .badge-icon {
+      width: 36px; height: 36px;
+      background: var(--orange);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .badge-text { font-size: 0.8rem; font-weight: 600; }
+    .badge-sub { font-size: 0.68rem; color: var(--grey); margin-top: 1px; }
+
+    /* ── SCROLLING TICKER ── */
+    .ticker {
+      background: var(--orange);
+      padding: 0.7rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-flex; gap: 3rem;
+      animation: ticker 25s linear infinite;
+    }
+
+    .ticker-item {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .ticker-dot { opacity: 0.6; }
+
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5%; }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 3rem;
+      color: var(--white);
+    }
+
+    .section-heading span { color: var(--orange); }
+
+    /* ── ABOUT ── */
+    #about { background: var(--surface); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1100px;
+    }
+
+    .about-img {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--surface2);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.8rem; color: var(--grey);
+      position: relative; overflow: hidden;
+    }
+
+    .about-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(to top, var(--surface2), transparent);
+    }
+
+    .about-img-icon { font-size: 2.5rem; opacity: 0.3; }
+    .about-img-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.4; }
+
+    .about-text p {
+      font-size: 0.95rem;
+      color: #b0b0b0;
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-note {
+      font-size: 0.78rem;
+      color: rgba(255,90,31,0.5);
+      font-style: italic;
+      padding: 0.8rem 1rem;
+      border: 1px dashed rgba(255,90,31,0.2);
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+
+    /* ── SPECIALTIES ── */
+    #specialties { background: var(--bg); }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      max-width: 1100px;
+    }
+
+    .spec-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 1rem;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .spec-card:hover {
+      border-color: var(--orange);
+      background: var(--surface2);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(255,90,31,0.1);
+    }
+
+    .spec-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+
+    .spec-name {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--light);
+    }
+
+    /* ── MILESTONES ── */
+    #milestones { background: var(--surface); }
+
+    .miles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+    }
+
+    .mile-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      transition: border-color 0.3s;
+    }
+
+    .mile-card:hover { border-color: rgba(255,90,31,0.4); }
+
+    .mile-icon {
+      width: 44px; height: 44px;
+      background: var(--orange-glow);
+      border: 1px solid rgba(255,90,31,0.3);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+
+    .mile-year {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .mile-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.4;
+    }
+
+    /* ── QUALIFICATIONS ── */
+    #qualifications { background: var(--bg); }
+
+    .qual-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      align-items: start;
+    }
+
+    .qual-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .qual-list li {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      font-size: 0.88rem; color: #b0b0b0; line-height: 1.5;
+      padding: 0.8rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s;
+    }
+
+    .qual-list li:hover { border-color: rgba(255,90,31,0.3); }
+
+    .qual-list li::before {
+      content: '✓';
+      color: var(--orange);
+      font-weight: 700;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .exp-cards { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .exp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .exp-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--surface); }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+    }
+
+    .test-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.3s;
+    }
+
+    .test-card:hover { border-color: rgba(255,90,31,0.3); }
+
+    .test-stars { color: var(--orange); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
+
+    .test-text {
+      font-size: 0.88rem;
+      color: #b0b0b0;
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .test-author {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .test-goal { font-size: 0.7rem; color: var(--orange); margin-top: 2px; }
+
+    .test-placeholder { color: rgba(255,90,31,0.4); }
+
+    /* ── SERVICES ── */
+    #services { background: var(--bg); }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1000px;
+    }
+
+    .svc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svc-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: transparent;
+      transition: background 0.3s;
+    }
+
+    .svc-card:hover { border-color: rgba(255,90,31,0.4); transform: translateY(-4px); }
+    .svc-card:hover::before { background: var(--orange); }
+    .svc-card.featured { border-color: var(--orange); }
+    .svc-card.featured::before { background: var(--orange); }
+
+    .svc-pill {
+      display: inline-block;
+      background: var(--orange-glow);
+      color: var(--orange);
+      border: 1px solid rgba(255,90,31,0.3);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+    }
+
+    .svc-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .svc-desc {
+      font-size: 0.85rem;
+      color: var(--grey);
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+
+    .svc-price {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--orange);
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      max-width: 1000px;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .contact-card {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+
+    .contact-card:hover { border-color: rgba(255,90,31,0.4); }
+
+    .contact-card-icon {
+      width: 40px; height: 40px;
+      background: var(--orange-glow);
+      border: 1px solid rgba(255,90,31,0.2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+
+    .contact-card-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 2px;
+    }
+
+    .contact-card-value { font-size: 0.85rem; color: var(--grey); }
+    .contact-card-value.ph { color: rgba(255,90,31,0.45); font-style: italic; }
+
+    .form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form input, .form textarea, .form select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.9rem 1.2rem;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form input:focus, .form textarea:focus { border-color: var(--orange); }
+    .form input::placeholder, .form textarea::placeholder { color: var(--grey); }
+    .form textarea { resize: vertical; min-height: 130px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 3px;
+      color: var(--white);
+    }
+
+    .footer-logo span { color: var(--orange); }
+
+    footer p { font-size: 0.75rem; color: var(--grey); }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-right { display: none; }
+      .hero-stats { justify-content: center; }
+      .hero-actions { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img { display: none; }
+      .spec-grid { grid-template-columns: repeat(3, 1fr); }
+      .miles-grid { grid-template-columns: 1fr; }
+      .qual-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .test-grid { grid-template-columns: 1fr; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      footer { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .spec-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">TT<span>H</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#specialties">Specialties</a></li>
+    <li><a href="#milestones">Awards</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#specialties" onclick="closeMenu()">Specialties</a>
+  <a href="#milestones" onclick="closeMenu()">Awards</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#testimonials" onclick="closeMenu()">Reviews</a>
+  <a href="#contact" onclick="closeMenu()">Book Now</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="hero-left">
+    <div class="hero-tag">Master Personal Trainer · Singapore</div>
+    <h1 class="hero-name">
+      TAN TIAN<br>
+      <span class="line2">HEE</span>
+    </h1>
+    <p class="hero-sub">Fitness Instructor &nbsp;·&nbsp; Certified Personal Trainer</p>
+    <p class="hero-quote">"You don't have to be extreme,<br>just be consistent."</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num" data-target="10">0</span>
+        <span class="stat-lbl">Years Training</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="10">0</span>
+        <span class="stat-lbl">Years Instructing</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="11">0</span>
+        <span class="stat-lbl">Certifications</span>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Book a Session →</a>
+      <a href="#about" class="btn btn-ghost">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="photo-frame">
+      <!-- Replace inner content with: <img src="your-photo.jpg" alt="Tan Tian Hee" /> -->
+      <span class="photo-initials">TTH</span>
+      <span class="photo-placeholder-text">Add your photo here</span>
+      <div class="photo-badge">
+        <div class="badge-icon">🏆</div>
+        <div>
+          <div class="badge-text">Top 3 PT Singapore</div>
+          <div class="badge-sub">Fitness First 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item">Weight Loss</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Muscle Building</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Core Building</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Mobility & Agility</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Flexibility & Balance</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Rehab & Recovery</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Pre & Post Natal</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Nutrition Coaching</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item">Weight Loss</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Muscle Building</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Core Building</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Mobility & Agility</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Flexibility & Balance</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Rehab & Recovery</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Pre & Post Natal</span>
+    <span class="ticker-item ticker-dot">✦</span>
+    <span class="ticker-item">Nutrition Coaching</span>
+    <span class="ticker-item ticker-dot">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <span class="tag">My Story</span>
+  <h2 class="section-heading">About <span>Me</span></h2>
+  <div class="about-grid">
+    <div class="about-img">
+      <!-- Replace with: <img src="your-action-photo.jpg" alt="Training" /> -->
+      <span class="about-img-icon">📸</span>
+      <span class="about-img-label">Add action photo here</span>
+    </div>
+    <div class="about-text reveal">
+      <p>With over 10 years of experience as both a Personal Trainer and Instructor Trainer, I have dedicated my career to helping individuals achieve their fitness goals through consistency, science-backed training, and personalised coaching.</p>
+      <p>Holding a Bachelor Degree in Sports & Exercise Science from Edith Cowan University, my approach combines academic knowledge with real-world results — from weight loss and muscle building to rehabilitation and mobility.</p>
+      <p>Recognised as a Top 3 Personal Trainer at Fitness First Singapore in 2024, I bring the same dedication and drive to every client I work with, regardless of their starting point.</p>
+      <div class="about-note">✏️ Add more about your personal journey and coaching philosophy here.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALTIES -->
+<section id="specialties">
+  <span class="tag">What I Do</span>
+  <h2 class="section-heading">My <span>Specialties</span></h2>
+  <div class="spec-grid">
+    <div class="spec-card reveal">
+      <span class="spec-icon">🔥</span>
+      <span class="spec-name">Weight Loss</span>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">💪</span>
+      <span class="spec-name">Muscle Building</span>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">⚡</span>
+      <span class="spec-name">Core Building</span>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🏃</span>
+      <span class="spec-name">Mobility & Agility</span>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🧘</span>
+      <span class="spec-name">Flexibility & Balance</span>
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section id="milestones">
+  <span class="tag">Recognition</span>
+  <h2 class="section-heading">Awards & <span>Milestones</span></h2>
+  <div class="miles-grid">
+    <div class="mile-card reveal">
+      <div class="mile-icon">🥇</div>
+      <div>
+        <div class="mile-year">2024</div>
+        <div class="mile-title">Top 3 Fitness First Singapore Personal Trainer</div>
+      </div>
+    </div>
+    <div class="mile-card reveal">
+      <div class="mile-icon">🏆</div>
+      <div>
+        <div class="mile-year">Nov 2024</div>
+        <div class="mile-title">Top Club PT Sale</div>
+      </div>
+    </div>
+    <div class="mile-card reveal">
+      <div class="mile-icon">⭐</div>
+      <div>
+        <div class="mile-year">Dec 2023</div>
+        <div class="mile-title">Top Club Personal Trainer</div>
+      </div>
+    </div>
+    <div class="mile-card reveal">
+      <div class="mile-icon">🏅</div>
+      <div>
+        <div class="mile-year">Mar 2023</div>
+        <div class="mile-title">Top Club PT Sale</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALIFICATIONS -->
+<section id="qualifications">
+  <span class="tag">Background</span>
+  <h2 class="section-heading">Qualifications & <span>Experience</span></h2>
+  <div class="qual-grid">
+    <ul class="qual-list">
+      <li class="reveal">Bachelor Degree in Sports & Exercise Science (Edith Cowan University)</li>
+      <li class="reveal">Certified Personal Trainer (PTA Global)</li>
+      <li class="reveal">Macronutrients and Exercise (PTontheNet Education)</li>
+      <li class="reveal">Rehab FX Movement Restoration Coach (FTI)</li>
+      <li class="reveal">Cross Circuit Training (Octane Fitness)</li>
+      <li class="reveal">Assisted Stretch (Fitness First)</li>
+      <li class="reveal">Pre and Post Natal (FTI)</li>
+      <li class="reveal">Fitness First Asia PT Foundation Programme</li>
+      <li class="reveal">CPR + AED Certified</li>
+      <li class="reveal">Safe Sports Certified</li>
+      <li class="reveal">National Registry of Exercise Professional (NREP) Registered</li>
+    </ul>
+    <div class="exp-cards">
+      <div class="exp-card reveal">
+        <div class="exp-number">10+</div>
+        <div class="exp-label">Years as Personal Trainer</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-number">10+</div>
+        <div class="exp-label">Years as Instructor Trainer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <span class="tag">Client Reviews</span>
+  <h2 class="section-heading">What Clients <span>Say</span></h2>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text test-placeholder">✏️ Add a client review here — e.g. "Tian Hee completely transformed my approach to fitness. In 3 months I lost 8kg and feel more confident than ever."</p>
+      <div class="test-author test-placeholder">— Client Name</div>
+      <div class="test-goal test-placeholder">Goal: Weight Loss</div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text test-placeholder">✏️ Add a client review here — e.g. "Best PT I've ever had. He knows exactly how to push you without burning you out."</p>
+      <div class="test-author test-placeholder">— Client Name</div>
+      <div class="test-goal test-placeholder">Goal: Muscle Building</div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text test-placeholder">✏️ Add a client review here — e.g. "I came in with a knee injury and left stronger than ever. His rehab knowledge is unmatched."</p>
+      <div class="test-author test-placeholder">— Client Name</div>
+      <div class="test-goal test-placeholder">Goal: Rehab & Recovery</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <span class="tag">Work With Me</span>
+  <h2 class="section-heading">My <span>Services</span></h2>
+  <div class="svc-grid">
+    <div class="svc-card reveal">
+      <div class="svc-name">1-on-1 Personal Training</div>
+      <p class="svc-desc">Fully personalised sessions tailored to your goals, fitness level, and schedule. Every session is designed around you.</p>
+      <div class="svc-price">✏️ Add pricing</div>
+    </div>
+    <div class="svc-card featured reveal">
+      <span class="svc-pill">Most Popular</span>
+      <div class="svc-name">Transformation Package</div>
+      <p class="svc-desc">A complete programme combining structured training, nutrition guidance, and weekly progress tracking.</p>
+      <div class="svc-price">✏️ Add pricing</div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-name">Rehab & Mobility</div>
+      <p class="svc-desc">Movement restoration and injury prevention using evidence-based rehab methods. Great for recovery and longevity.</p>
+      <div class="svc-price">✏️ Add pricing</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="tag">Get In Touch</span>
+  <h2 class="section-heading">Book a <span>Session</span></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <a class="contact-card" href="mailto:your.email@gmail.com">
+        <div class="contact-card-icon">✉</div>
+        <div>
+          <div class="contact-card-label">Email</div>
+          <!-- Replace with your email -->
+          <div class="contact-card-value ph">your.email@gmail.com</div>
+        </div>
+      </a>
+      <a class="contact-card" href="#">
+        <div class="contact-card-icon">📸</div>
+        <div>
+          <div class="contact-card-label">Instagram</div>
+          <!-- Replace with your Instagram handle -->
+          <div class="contact-card-value ph">@yourinstagram</div>
+        </div>
+      </a>
+      <a class="contact-card" href="#">
+        <div class="contact-card-icon">📘</div>
+        <div>
+          <div class="contact-card-label">Facebook</div>
+          <!-- Replace with your Facebook page -->
+          <div class="contact-card-value ph">Your Facebook Page</div>
+        </div>
+      </a>
+      <div class="contact-card">
+        <div class="contact-card-icon">📍</div>
+        <div>
+          <div class="contact-card-label">Location</div>
+          <div class="contact-card-value">Singapore</div>
+        </div>
+      </div>
+    </div>
+    <form class="form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+      </div>
+      <input type="text" placeholder="Your Goal (e.g. Weight Loss, Muscle Gain)" />
+      <textarea placeholder="Tell me more about yourself and what you're looking to achieve..."></textarea>
+      <button type="submit" class="btn btn-primary">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">TT<span>H</span></div>
+  <p>© 2026 Tan Tian Hee · Master Personal Trainer · Singapore</p>
+</footer>
+
+<script>
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert("Thank you! Your message has been sent. I'll be in touch shortly.");
+    e.target.reset();
+  }
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Animated counters
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        let current = 0;
+        const step = Math.ceil(target / 30);
+        const interval = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = current + '+';
+          if (current >= target) clearInterval(interval);
+        }, 40);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+</script>
+</body>
+</html>
